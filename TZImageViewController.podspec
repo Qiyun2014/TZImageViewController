@@ -8,16 +8,16 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TZImageViewController'
-  s.version          = '1.1.1'
+  s.version          = '1.0.0'
   s.summary          = 'A short description of TZImageViewController.'
 
-  s.homepage     = "http://192.168.30.4/iOS/TZImagePickerController.git"
+  s.homepage     = "https://github.com/Qiyun2014/TZImageViewController"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
   s.license      = "MIT"
   s.author       = { "qiyun" => "qiyun@yryz.com" }
-  s.source       = { :git => "git@192.168.30.4:iOS/TZImagePickerController.git", :tag => s.version.to_s}
+  s.source       = { :git => "https://github.com/Qiyun2014/TZImageViewController.git", :tag => s.version.to_s}
 
   s.platform     = :ios, '9.0'
 
