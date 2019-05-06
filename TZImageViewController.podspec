@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '9.0'
 
   s.source_files  = 'TZImageViewController/*.{h,m}'
-  #s.resources     = "TZImageViewController/Assets/*.bundle"
+  s.resources     = "TZImageViewController/*.bundle"
 
   s.frameworks   = 'AVFoundation','CoreGraphics', 'CoreAudio', 'CoreVideo','CoreTelephony', 'CoreMedia', 'AudioToolbox', 'Accelerate','VideoToolbox'
   s.ios.library  = 'c++','z','resolv.9','iconv.2.4.0'
