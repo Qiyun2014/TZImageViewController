@@ -225,7 +225,7 @@ static dispatch_once_t onceToken;
     }
     
     // 视频图像限制
-    if (phAsset.duration < 10 || phAsset.duration > 5 * 60) {
+    if ((phAsset.duration < 10 || phAsset.duration > 5 * 60) && allowPickingVideo && type == TZAssetModelMediaTypeVideo) {
         return nil;
     }
     

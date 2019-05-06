@@ -18,6 +18,7 @@
 #import "TZLocationManager.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "TZImageRequestOperation.h"
+#import "LLAssetExportManager.h"
 
 @interface TZPhotoPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UIVideoEditorControllerDelegate> {
     NSMutableArray *_models;
@@ -604,8 +605,25 @@ static CGFloat itemMargin = 5;
             [imagePickerVc showAlertWithTitle:[NSBundle tz_localizedStringForKey:@"Can not choose both video and photo"]];
         } else {
             if (model.asset) {
-                self.editorModel = model;
-                [self presentToVideoEditorControllerWithAsset:model.asset];
+                //self.editorModel = model;
+                //[self presentToVideoEditorControllerWithAsset:model.asset];
+                
+                [LLAssetExportManager exportSessionWithPHAsset:model.asset completion:^(int status, float progress, NSString * _Nonnull output, UIImage * _Nullable thumbImage) {
+                    NSLog(@"export session progress is  >>>>   %.3f", progress);
+                    if (status == AVAssetExportSessionStatusCompleted) {
+                        NSLog(@"~~~~~~~~~~~~   output = %@", output);
+                        
+                        if (tzImagePickerVc.didSelectVideoHandle) {
+                            tzImagePickerVc.didSelectVideoHandle(thumbImage, output);
+                        }
+                        
+                        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                            if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didSelectVideoOfPath:thumbImage:)]) {
+                                [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didSelectVideoOfPath:output thumbImage:thumbImage];
+                            }
+                        }];
+                    }
+                }];
             }
         }
     } else if (model.type == TZAssetModelMediaTypePhotoGif && tzImagePickerVc.allowPickingGif && !tzImagePickerVc.allowPickingMultipleVideo) {

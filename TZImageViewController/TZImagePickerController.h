@@ -237,6 +237,9 @@
 @property (nonatomic, copy) void (^didFinishPickingVideoHandle)(UIImage *coverImage,PHAsset *asset);
 @property (nonatomic, copy) void (^didFinishPickingGifImageHandle)(UIImage *animatedImage,id sourceAssets);
 
+// For video
+@property (nonatomic, copy) void (^didSelectVideoHandle)(UIImage *image, NSString *filePath);
+
 @property (nonatomic, weak) id<TZImagePickerControllerDelegate> pickerDelegate;
 
 @end
@@ -257,6 +260,8 @@
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto;
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos;
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker;
+
+- (void)imagePickerController:(TZImagePickerController *)picker didSelectVideoOfPath:(NSString *)filePath thumbImage:(UIImage *)image;
 
 // If user picking a video and allowPickingMultipleVideo is NO, this callback will be called.
 // If allowPickingMultipleVideo is YES, will call imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:

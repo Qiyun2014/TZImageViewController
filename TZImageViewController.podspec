@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TZImageViewController'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'A short description of TZImageViewController.'
 
   s.homepage     = "https://github.com/Qiyun2014/TZImageViewController"
